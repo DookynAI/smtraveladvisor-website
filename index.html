@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SM Travel Advisor — Luxury Travel, Reimagined</title>
+  <meta name="description" content="SM Travel Advisor is a premier luxury travel booking platform. Experience bespoke journeys to the world's most extraordinary destinations. Coming soon.">
+  <meta name="theme-color" content="#1a1e2e">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo">SM TRAVEL ADVISOR</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="#" class="nav__brand" aria-label="SM Travel Advisor Home">
+      <svg class="nav__logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="17" stroke="url(#gold-grad)" stroke-width="1.5"/>
+        <path d="M10 22 L18 10 L26 22" stroke="url(#gold-grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M13 19 L18 13 L23 19" stroke="url(#gold-grad)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+        <defs>
+          <linearGradient id="gold-grad" x1="0" y1="0" x2="36" y2="36">
+            <stop offset="0%" stop-color="hsl(32, 80%, 55%)"/>
+            <stop offset="100%" stop-color="hsl(42, 90%, 60%)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav__name">SM Travel Advisor</span>
+    </a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#countdown" class="nav__link">Launch</a></li>
+      <li><a href="#destinations" class="nav__link">Destinations</a></li>
+      <li><a href="#features" class="nav__link">Experience</a></li>
+      <li><a href="#notify" class="nav__cta">Get Notified</a></li>
+    </ul>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="hero__bg">
+      <img src="images/hero.png" alt="Aerial view of a luxury tropical island resort at sunset" width="1920" height="1080" fetchpriority="high">
+    </div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="hero__particles" id="particles" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        Launching Summer 2026
+      </div>
+      <h1 class="hero__title">
+        Travel Beyond<br><span class="hero__title-accent">Imagination</span>
+      </h1>
+      <p class="hero__subtitle">
+        Curated luxury journeys to the world's most extraordinary destinations. 
+        Bespoke itineraries, exclusive access, unforgettable moments.
+      </p>
+      <form class="signup" id="signupForm" aria-label="Email signup form">
+        <label for="emailInput" class="sr-only">Email address</label>
+        <input
+          class="signup__input"
+          type="email"
+          id="emailInput"
+          name="email"
+          placeholder="Enter your email for early access"
+          required
+          autocomplete="email"
+        >
+        <button class="signup__btn" type="submit" id="signupBtn">Notify Me</button>
+      </form>
+      <div class="signup__success" id="signupSuccess" role="status">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="9" stroke="hsl(150, 60%, 55%)" stroke-width="1.5"/>
+          <path d="M6 10.5 L9 13.5 L14 7.5" stroke="hsl(150, 60%, 55%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        You're on the list! We'll be in touch soon.
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-indicator__mouse">
+        <div class="scroll-indicator__wheel"></div>
+      </div>
+      <span class="scroll-indicator__text">Scroll</span>
+    </div>
+  </header>
+
+  <!-- Countdown Section -->
+  <section class="section countdown-section" id="countdown">
+    <div class="section__header reveal">
+      <p class="section__eyebrow">Countdown to Launch</p>
+      <h2 class="section__title">Something Extraordinary<br>Is on Its Way</h2>
+      <p class="section__desc">
+        We're crafting an unparalleled travel experience. Mark your calendar — the journey begins soon.
+      </p>
+    </div>
+    <div class="countdown reveal" id="countdownTimer" aria-label="Time remaining until launch">
+      <div class="countdown__item">
+        <span class="countdown__number" id="countDays">00</span>
+        <span class="countdown__label">Days</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__number" id="countHours">00</span>
+        <span class="countdown__label">Hours</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__number" id="countMinutes">00</span>
+        <span class="countdown__label">Minutes</span>
+      </div>
+      <div class="countdown__item">
+        <span class="countdown__number" id="countSeconds">00</span>
+        <span class="countdown__label">Seconds</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Preview -->
+  <section class="section destinations" id="destinations">
+    <div class="section__header reveal">
+      <p class="section__eyebrow">Featured Destinations</p>
+      <h2 class="section__title">Where Will Your<br>Story Begin?</h2>
+      <p class="section__desc">
+        From sun-kissed islands to snow-capped peaks, explore the world's most coveted retreats — each handpicked for discerning travelers.
+      </p>
+    </div>
+    <div class="destinations__grid">
+      <article class="destination-card reveal reveal-delay-1" id="card-santorini">
+        <img class="destination-card__img" src="images/santorini.png" alt="Santorini sunset with iconic blue-domed churches" loading="lazy" width="800" height="1067">
+        <div class="destination-card__overlay"></div>
+        <div class="destination-card__content">
+          <p class="destination-card__location">Greece</p>
+          <h3 class="destination-card__name">Santorini</h3>
+          <p class="destination-card__desc">Sunsets over the caldera, private yacht tours, and boutique luxury villas perched above the Aegean.</p>
+        </div>
+      </article>
+      <article class="destination-card reveal reveal-delay-2" id="card-bali">
+        <img class="destination-card__img" src="images/bali.png" alt="Luxury infinity pool overlooking Bali rice terraces" loading="lazy" width="800" height="1067">
+        <div class="destination-card__overlay"></div>
+        <div class="destination-card__content">
+          <p class="destination-card__location">Indonesia</p>
+          <h3 class="destination-card__name">Bali</h3>
+          <p class="destination-card__desc">Infinity pools amid rice terraces, sacred temples, and rejuvenating wellness retreats in paradise.</p>
+        </div>
+      </article>
+      <article class="destination-card reveal reveal-delay-3" id="card-swiss">
+        <img class="destination-card__img" src="images/swiss.png" alt="Swiss Alps luxury chalet with mountain reflection" loading="lazy" width="800" height="1067">
+        <div class="destination-card__overlay"></div>
+        <div class="destination-card__content">
+          <p class="destination-card__location">Switzerland</p>
+          <h3 class="destination-card__name">Swiss Alps</h3>
+          <p class="destination-card__desc">Alpine chalets, pristine slopes, and Michelin-starred dining against breathtaking mountain panoramas.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section features" id="features">
+    <div class="section__header reveal">
+      <p class="section__eyebrow">The SM Difference</p>
+      <h2 class="section__title">Luxury, Redefined</h2>
+      <p class="section__desc">
+        Every detail is meticulously crafted to exceed expectations. This isn't just travel — it's transformation.
+      </p>
+    </div>
+    <div class="features__grid">
+      <div class="feature-card reveal reveal-delay-1" id="feature-concierge">
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3C7.925 3 3 7.925 3 14s4.925 11 11 11 11-4.925 11-11S20.075 3 14 3z" stroke="hsl(32,80%,55%)" stroke-width="1.5"/><path d="M14 8v6l4 3" stroke="hsl(32,80%,55%)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-card__title">24/7 Concierge</h3>
+        <p class="feature-card__desc">Your personal travel advisor available around the clock, ensuring every moment exceeds expectations.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2" id="feature-itinerary">
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 7h20M4 14h20M4 21h12" stroke="hsl(32,80%,55%)" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="21" r="4" stroke="hsl(32,80%,55%)" stroke-width="1.5"/><path d="M22 19v2l1.5 1" stroke="hsl(32,80%,55%)" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-card__title">Bespoke Itineraries</h3>
+        <p class="feature-card__desc">Custom-crafted journeys tailored to your desires — from hidden gems to iconic landmarks, no request is too extraordinary.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3" id="feature-access">
+        <div class="feature-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3l3 6h7l-5.5 4.5L20.5 21 14 17l-6.5 4 2-7.5L4 9h7l3-6z" stroke="hsl(32,80%,55%)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="feature-card__title">Exclusive Access</h3>
+        <p class="feature-card__desc">Unlock private experiences, VIP events, and behind-the-scenes moments unavailable to ordinary travelers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Section -->
+  <section class="section cta" id="notify">
+    <div class="cta__wrapper reveal">
+      <p class="section__eyebrow">Stay Connected</p>
+      <h2 class="cta__title">Be the First to <span class="hero__title-accent">Experience</span> It</h2>
+      <p class="cta__desc">Join our exclusive waiting list and receive early access, insider previews, and founding member benefits when we launch.</p>
+      <form class="signup" id="signupFormBottom" aria-label="Email signup form">
+        <label for="emailInputBottom" class="sr-only">Email address</label>
+        <input
+          class="signup__input"
+          type="email"
+          id="emailInputBottom"
+          name="email"
+          placeholder="Enter your email for early access"
+          required
+          autocomplete="email"
+        >
+        <button class="signup__btn" type="submit">Notify Me</button>
+      </form>
+      <div class="signup__success" id="signupSuccessBottom" role="status">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="9" stroke="hsl(150, 60%, 55%)" stroke-width="1.5"/>
+          <path d="M6 10.5 L9 13.5 L14 7.5" stroke="hsl(150, 60%, 55%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        You're on the list! We'll be in touch soon.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">SM Travel Advisor</span>
+      <p class="footer__copy">&copy; 2026 SM Travel Advisor. All rights reserved.</p>
+      <div class="footer__socials" aria-label="Social media links">
+        <a href="#" class="footer__social-link" aria-label="Instagram" id="social-instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="X (Twitter)" id="social-twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l7.07 8.5L4 20h2l5.59-5.93L16 20h4l-7.46-8.96L20 4h-2l-5.13 5.45L9 4H4z"/></svg>
+        </a>
+        <a href="#" class="footer__social-link" aria-label="LinkedIn" id="social-linkedin">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5c0-1.5 1-2 2-2s2 .5 2 2v5"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
