@@ -19,23 +19,18 @@
   <!-- Navigation -->
   <nav class="nav" id="nav" aria-label="Main navigation">
     <a href="#" class="nav__brand" aria-label="SM Travel Advisor Home">
-      <svg class="nav__logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="18" cy="18" r="17" stroke="url(#gold-grad)" stroke-width="1.5"/>
-        <path d="M10 22 L18 10 L26 22" stroke="url(#gold-grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M13 19 L18 13 L23 19" stroke="url(#gold-grad)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
-        <defs>
-          <linearGradient id="gold-grad" x1="0" y1="0" x2="36" y2="36">
-            <stop offset="0%" stop-color="hsl(32, 80%, 55%)"/>
-            <stop offset="100%" stop-color="hsl(42, 90%, 60%)"/>
-          </linearGradient>
-        </defs>
-      </svg>
+      <img class="nav__logo-img" src="images/SM_Logo.png" alt="SM Travel Advisor logo" height="40">
       <span class="nav__name">SM Travel Advisor</span>
     </a>
     <ul class="nav__links" id="navLinks">
       <li><a href="#countdown" class="nav__link">Launch</a></li>
       <li><a href="#destinations" class="nav__link">Destinations</a></li>
       <li><a href="#features" class="nav__link">Experience</a></li>
+      <li>
+        <a href="https://www.instagram.com/smtraveladvisor/" target="_blank" rel="noopener noreferrer" class="nav__social" aria-label="Follow us on Instagram" id="nav-instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </li>
       <li><a href="#notify" class="nav__cta">Get Notified</a></li>
     </ul>
     <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -62,8 +57,7 @@
         Travel Beyond<br><span class="hero__title-accent">Imagination</span>
       </h1>
       <p class="hero__subtitle">
-        Curated luxury journeys to the world's most extraordinary destinations. 
-        Bespoke itineraries, exclusive access, unforgettable moments.
+        After 25+ years of seeing the world through professional golf, I'm putting that experience to work for you — crafting unforgettable journeys so you can enjoy every moment without lifting a finger.
       </p>
       <form class="signup" id="signupForm" aria-label="Email signup form">
         <label for="emailInput" class="sr-only">Email address</label>
@@ -98,10 +92,10 @@
   <!-- Countdown Section -->
   <section class="section countdown-section" id="countdown">
     <div class="section__header reveal">
-      <p class="section__eyebrow">Countdown to Launch</p>
-      <h2 class="section__title">Something Extraordinary<br>Is on Its Way</h2>
+      <p class="section__eyebrow">My Story</p>
+      <h2 class="section__title">From the Fairway<br>to the <span class="hero__title-accent">World</span></h2>
       <p class="section__desc">
-        We're crafting an unparalleled travel experience. Mark your calendar — the journey begins soon.
+        After more than two decades in the professional golf industry, I've been fortunate to travel the globe and experience extraordinary places firsthand. Now, I'm channeling everything I've learned on the road into a new venture — as a proud affiliate of <strong>Fora Travel</strong> — to help you create moments you'll never forget.
       </p>
     </div>
     <div class="countdown reveal" id="countdownTimer" aria-label="Time remaining until launch">
@@ -161,16 +155,43 @@
           <p class="destination-card__desc">Alpine chalets, pristine slopes, and Michelin-starred dining against breathtaking mountain panoramas.</p>
         </div>
       </article>
+      <article class="destination-card reveal reveal-delay-4" id="card-scotland-golf">
+        <img class="destination-card__img" src="images/scotland-golf.png" alt="Iconic coastal golf links in Scotland at golden hour" loading="lazy" width="800" height="1067">
+        <div class="destination-card__overlay"></div>
+        <div class="destination-card__content">
+          <p class="destination-card__location">Scotland</p>
+          <h3 class="destination-card__name">St Andrews Golf</h3>
+          <p class="destination-card__desc">Walk the hallowed links where the game was born — legendary coastal courses, centuries of tradition, and world-class hospitality.</p>
+        </div>
+      </article>
+      <article class="destination-card reveal reveal-delay-5" id="card-alaska-fishing">
+        <img class="destination-card__img" src="images/alaska-fishing.png" alt="Sport fishing boat on pristine Alaskan waters with snow-capped mountains" loading="lazy" width="800" height="1067">
+        <div class="destination-card__overlay"></div>
+        <div class="destination-card__content">
+          <p class="destination-card__location">Alaska</p>
+          <h3 class="destination-card__name">Deep-Sea Fishing</h3>
+          <p class="destination-card__desc">Glacial waters, trophy salmon, and untamed wilderness — the ultimate fishing adventure set against Alaska's dramatic frontier.</p>
+        </div>
+      </article>
+      <article class="destination-card reveal reveal-delay-6" id="card-aspen-skiing">
+        <img class="destination-card__img" src="images/aspen-skiing.png" alt="Skier carving down pristine snowy slopes in Aspen with majestic snow-covered mountains" loading="lazy" width="800" height="1067">
+        <div class="destination-card__overlay"></div>
+        <div class="destination-card__content">
+          <p class="destination-card__location">Colorado</p>
+          <h3 class="destination-card__name">Aspen Skiing</h3>
+          <p class="destination-card__desc">Pristine powder, ski-in/ski-out luxury chalets, and world-class après-ski experiences in the heart of the Rocky Mountains.</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <!-- Features Section -->
   <section class="section features" id="features">
     <div class="section__header reveal">
-      <p class="section__eyebrow">The SM Difference</p>
-      <h2 class="section__title">Luxury, Redefined</h2>
+      <p class="section__eyebrow">The SM Promise</p>
+      <h2 class="section__title">Your Journey,<br>My Expertise</h2>
       <p class="section__desc">
-        Every detail is meticulously crafted to exceed expectations. This isn't just travel — it's transformation.
+        Tell me where you want to go — or what you want to experience — and I'll handle everything else. No matter how big or small the trip, I'm here to make it effortless.
       </p>
     </div>
     <div class="features__grid">
@@ -178,22 +199,22 @@
         <div class="feature-card__icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3C7.925 3 3 7.925 3 14s4.925 11 11 11 11-4.925 11-11S20.075 3 14 3z" stroke="hsl(32,80%,55%)" stroke-width="1.5"/><path d="M14 8v6l4 3" stroke="hsl(32,80%,55%)" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
-        <h3 class="feature-card__title">24/7 Concierge</h3>
-        <p class="feature-card__desc">Your personal travel advisor available around the clock, ensuring every moment exceeds expectations.</p>
+        <h3 class="feature-card__title">Zero Prep Work</h3>
+        <p class="feature-card__desc">You deserve to enjoy the trip, not stress over the planning. I take care of every detail — flights, hotels, excursions, and everything in between — so you just show up and make memories.</p>
       </div>
       <div class="feature-card reveal reveal-delay-2" id="feature-itinerary">
         <div class="feature-card__icon" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 7h20M4 14h20M4 21h12" stroke="hsl(32,80%,55%)" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="21" r="4" stroke="hsl(32,80%,55%)" stroke-width="1.5"/><path d="M22 19v2l1.5 1" stroke="hsl(32,80%,55%)" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14l4.5 4.5L22 9" stroke="hsl(32,80%,55%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <h3 class="feature-card__title">Bespoke Itineraries</h3>
-        <p class="feature-card__desc">Custom-crafted journeys tailored to your desires — from hidden gems to iconic landmarks, no request is too extraordinary.</p>
+        <h3 class="feature-card__title">No Cost, No Catch</h3>
+        <p class="feature-card__desc">My services come at no additional cost to you — ever. Simply tell me what you have in mind, and I'll find you the best offer out there. It's that straightforward.</p>
       </div>
       <div class="feature-card reveal reveal-delay-3" id="feature-access">
         <div class="feature-card__icon" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3l3 6h7l-5.5 4.5L20.5 21 14 17l-6.5 4 2-7.5L4 9h7l3-6z" stroke="hsl(32,80%,55%)" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
-        <h3 class="feature-card__title">Exclusive Access</h3>
-        <p class="feature-card__desc">Unlock private experiences, VIP events, and behind-the-scenes moments unavailable to ordinary travelers.</p>
+        <h3 class="feature-card__title">Any Trip, Any Scale</h3>
+        <p class="feature-card__desc">A simple flight, a rental car, a weekend getaway, an all-inclusive package, or a once-in-a-lifetime adventure — nothing is too big, too small, or too last-minute when it's time to explore.</p>
       </div>
     </div>
   </section>
@@ -201,9 +222,9 @@
   <!-- Bottom CTA Section -->
   <section class="section cta" id="notify">
     <div class="cta__wrapper reveal">
-      <p class="section__eyebrow">Stay Connected</p>
-      <h2 class="cta__title">Be the First to <span class="hero__title-accent">Experience</span> It</h2>
-      <p class="cta__desc">Join our exclusive waiting list and receive early access, insider previews, and founding member benefits when we launch.</p>
+      <p class="section__eyebrow">Let's Get Started</p>
+      <h2 class="cta__title">Let's <span class="hero__title-accent">Dream It Up</span> Together</h2>
+      <p class="cta__desc">Whether you have a destination in mind or just a feeling you're chasing, reach out and let's start building your next unforgettable experience. I'd love to help.</p>
       <form class="signup" id="signupFormBottom" aria-label="Email signup form">
         <label for="emailInputBottom" class="sr-only">Email address</label>
         <input
@@ -233,7 +254,7 @@
       <span class="footer__brand">SM Travel Advisor</span>
       <p class="footer__copy">&copy; 2026 SM Travel Advisor. All rights reserved.</p>
       <div class="footer__socials" aria-label="Social media links">
-        <a href="#" class="footer__social-link" aria-label="Instagram" id="social-instagram">
+        <a href="https://www.instagram.com/smtraveladvisor/" target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label="Instagram" id="social-instagram">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
         </a>
         <a href="#" class="footer__social-link" aria-label="X (Twitter)" id="social-twitter">
