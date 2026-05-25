@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Web3Forms Access Key is not configured. Falling back to local mail client.');
         const subject = encodeURIComponent('SM Travel Advisor — New Early Access Signup');
         const body = encodeURIComponent(`New signup request from: ${emailInput.value}\n\nPlease add this person to the early access list.`);
-        window.location.href = `mailto:shann.montgomery@foratravel.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:shann.montgomery@fora.travel?subject=${subject}&body=${body}`;
         
         // Display local success message
         form.style.display = 'none';
