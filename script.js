@@ -113,7 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailInput = form.querySelector('input[type="email"]');
       if (!emailInput.value) return;
 
-      // Simulate submission
+      // Send mailto to travel advisor
+      const userEmail = encodeURIComponent(emailInput.value);
+      const subject = encodeURIComponent('SM Travel Advisor — New Early Access Signup');
+      const body = encodeURIComponent(`New signup request from: ${emailInput.value}\n\nPlease add this person to the early access list.`);
+      window.location.href = `mailto:shann.montgomery@foratravel.com?subject=${subject}&body=${body}`;
+
       const btn = form.querySelector('.signup__btn');
       const originalText = btn.textContent;
       btn.textContent = 'Sending...';

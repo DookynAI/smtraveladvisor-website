@@ -195,9 +195,10 @@ ul {
   gap: var(--space-sm);
 }
 
-.nav__logo-icon {
-  width: 36px;
-  height: 36px;
+.nav__logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav__name {
@@ -267,6 +268,25 @@ ul {
   background: var(--clr-primary);
   color: var(--clr-bg-dark);
   box-shadow: var(--shadow-glow);
+}
+
+.nav__social {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--clr-glass-border);
+  border-radius: 50%;
+  color: var(--clr-text-muted);
+  transition: all var(--duration-fast);
+}
+
+.nav__social:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  background: hsla(32, 80%, 55%, 0.1);
+  transform: scale(1.1);
 }
 
 /* Mobile nav toggle */
@@ -410,10 +430,11 @@ ul {
   font-family: var(--ff-body);
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 300;
-  color: var(--clr-text-muted);
+  color: hsl(40, 20%, 90%);
   max-width: 600px;
   margin: 0 auto var(--space-2xl);
   line-height: 1.8;
+  text-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.5);
   animation: fade-in-up 0.8s var(--ease-out-expo) 0.7s both;
 }
 
@@ -575,7 +596,7 @@ ul {
 .section__desc {
   font-size: 1.05rem;
   font-weight: 300;
-  color: var(--clr-text-muted);
+  color: hsl(40, 15%, 80%);
   line-height: 1.8;
 }
 
@@ -653,10 +674,14 @@ ul {
 
 .destinations__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-lg);
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.destination-card {
+  grid-column: span 2;
 }
 
 .destination-card {
@@ -970,6 +995,9 @@ ul {
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
@@ -1012,6 +1040,10 @@ ul {
     grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
+  }
+
+  .destination-card {
+    grid-column: auto;
   }
 
   .features__grid {
