@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Look for the action URL inside the HTML code. It will look like:
   //    https://assets.mailerlite.com/jsonp/YOUR_ACCOUNT_ID/forms/YOUR_FORM_ID/subscribe
   // 4. Enter your Account ID and Form ID below:
-  const MAILERLITE_ACCOUNT_ID = 'YOUR_MAILERLITE_ACCOUNT_ID_HERE';
-  const MAILERLITE_FORM_ID = 'YOUR_MAILERLITE_FORM_ID_HERE';
+  const MAILERLITE_ACCOUNT_ID = '2379577';
+  const MAILERLITE_FORM_ID = '188484677949981967';
 
   function setupSignupForm(formId, successId) {
     const form = document.getElementById(formId);
