@@ -101,7 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // ---------- Email Signup Forms ----------
+  // ---------- Email Signup Forms (Web3Forms API Integration) ----------
+  // To receive email signups automatically in your inbox (without mail client popups),
+  // 1. Visit https://web3forms.com and request a free access key (sent instantly to your email).
+  // 2. Paste your access key in the constant below:
+  const WEB3FORMS_ACCESS_KEY = '77e617ab-f003-4c02-9569-8b64a9c91fd1';
+
   function setupSignupForm(formId, successId) {
     const form = document.getElementById(formId);
     const success = document.getElementById(successId);
@@ -113,23 +118,61 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailInput = form.querySelector('input[type="email"]');
       if (!emailInput.value) return;
 
-      // Send mailto to travel advisor
-      const userEmail = encodeURIComponent(emailInput.value);
-      const subject = encodeURIComponent('SM Travel Advisor — New Early Access Signup');
-      const body = encodeURIComponent(`New signup request from: ${emailInput.value}\n\nPlease add this person to the early access list.`);
-      window.location.href = `mailto:shann.montgomery@foratravel.com?subject=${subject}&body=${body}`;
+      // Graceful fallback to mailto if key is not configured yet
+      if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
+        console.warn('Web3Forms Access Key is not configured. Falling back to local mail client.');
+        const subject = encodeURIComponent('SM Travel Advisor — New Early Access Signup');
+        const body = encodeURIComponent(`New signup request from: ${emailInput.value}\n\nPlease add this person to the early access list.`);
+        window.location.href = `mailto:shann.montgomery@foratravel.com?subject=${subject}&body=${body}`;
+        
+        // Display local success message
+        form.style.display = 'none';
+        success.classList.add('show');
+        return;
+      }
 
       const btn = form.querySelector('.signup__btn');
       const originalText = btn.textContent;
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      setTimeout(() => {
-        form.style.display = 'none';
-        success.classList.add('show');
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }, 1000);
+      // Prepare form data for Web3Forms API
+      const formData = new FormData(form);
+      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
+      formData.append('subject', 'SM Travel Advisor — New Early Access Signup');
+      formData.append('from_name', 'SM Travel Advisor Landing Page');
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData
+      })
+      .then(async (response) => {
+        const json = await response.json();
+        if (response.status === 200) {
+          form.style.display = 'none';
+          success.classList.add('show');
+        } else {
+          console.error('Web3Forms Error:', json);
+          btn.textContent = 'Error!';
+          alert(json.message || 'Something went wrong. Please try again.');
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 3000);
+        }
+      })
+      .catch((error) => {
+        console.error('Network Error:', error);
+        btn.textContent = 'Error!';
+        alert('Form submission failed. Please check your internet connection.');
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }, 3000);
+      });
     });
   }
 
