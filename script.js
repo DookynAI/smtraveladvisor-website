@@ -101,11 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // ---------- Email Signup Forms (Web3Forms API Integration) ----------
-  // To receive email signups automatically in your inbox (without mail client popups),
-  // 1. Visit https://web3forms.com and request a free access key (sent instantly to your email).
-  // 2. Paste your access key in the constant below:
-  const WEB3FORMS_ACCESS_KEY = '77e617ab-f003-4c02-9569-8b64a9c91fd1';
+  // ---------- Email Signup Forms (MailerLite Integration) ----------
+  // To connect signups directly to MailerLite and automatically trigger welcome emails:
+  // 1. Log in to MailerLite, go to Forms -> Embedded Forms, and create a form.
+  // 2. Click the form name, scroll to "Embed form into your website", and choose "HTML Code".
+  // 3. Look for the action URL inside the HTML code. It will look like:
+  //    https://assets.mailerlite.com/jsonp/YOUR_ACCOUNT_ID/forms/YOUR_FORM_ID/subscribe
+  // 4. Enter your Account ID and Form ID below:
+  const MAILERLITE_ACCOUNT_ID = 'YOUR_MAILERLITE_ACCOUNT_ID_HERE';
+  const MAILERLITE_FORM_ID = 'YOUR_MAILERLITE_FORM_ID_HERE';
 
   function setupSignupForm(formId, successId) {
     const form = document.getElementById(formId);
@@ -118,9 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailInput = form.querySelector('input[type="email"]');
       if (!emailInput.value) return;
 
-      // Graceful fallback to mailto if key is not configured yet
-      if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
-        console.warn('Web3Forms Access Key is not configured. Falling back to local mail client.');
+      // Graceful fallback to mailto if MailerLite is not configured yet
+      if (!MAILERLITE_ACCOUNT_ID || MAILERLITE_ACCOUNT_ID === 'YOUR_MAILERLITE_ACCOUNT_ID_HERE' || 
+          !MAILERLITE_FORM_ID || MAILERLITE_FORM_ID === 'YOUR_MAILERLITE_FORM_ID_HERE') {
+        console.warn('MailerLite is not configured. Falling back to local mail client.');
         const subject = encodeURIComponent('SM Travel Advisor — New Early Access Signup');
         const body = encodeURIComponent(`New signup request from: ${emailInput.value}\n\nPlease add this person to the early access list.`);
         window.location.href = `mailto:shann.montgomery@fora.travel?subject=${subject}&body=${body}`;
@@ -136,43 +141,48 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      // Prepare form data for Web3Forms API
-      const formData = new FormData(form);
-      formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-      formData.append('subject', 'SM Travel Advisor — New Early Access Signup');
-      formData.append('from_name', 'SM Travel Advisor Landing Page');
+      // Generate a unique dynamic callback name to prevent collisions
+      const callbackName = `ml_callback_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json'
-        },
-        body: formData
-      })
-      .then(async (response) => {
-        const json = await response.json();
-        if (response.status === 200) {
+      // Define the dynamic callback on the window object
+      window[callbackName] = (response) => {
+        // Clean up window object and DOM script tag
+        delete window[callbackName];
+        const scriptElement = document.getElementById(callbackName);
+        if (scriptElement) scriptElement.remove();
+
+        if (response.success) {
           form.style.display = 'none';
           success.classList.add('show');
         } else {
-          console.error('Web3Forms Error:', json);
+          console.error('MailerLite Error:', response);
           btn.textContent = 'Error!';
-          alert(json.message || 'Something went wrong. Please try again.');
+          const errorMsg = response.errors && response.errors.email ? response.errors.email[0] : 'Something went wrong. Please try again.';
+          alert(errorMsg);
           setTimeout(() => {
             btn.textContent = originalText;
             btn.disabled = false;
           }, 3000);
         }
-      })
-      .catch((error) => {
-        console.error('Network Error:', error);
+      };
+
+      // Create and inject script tag to make the JSONP request
+      const script = document.createElement('script');
+      script.id = callbackName;
+      script.src = `https://assets.mailerlite.com/jsonp/${MAILERLITE_ACCOUNT_ID}/forms/${MAILERLITE_FORM_ID}/subscribe?fields[email]=${encodeURIComponent(emailInput.value)}&ml-submit=1&callback=${callbackName}`;
+      script.onerror = () => {
+        delete window[callbackName];
+        script.remove();
+        console.error('MailerLite Network Error');
         btn.textContent = 'Error!';
         alert('Form submission failed. Please check your internet connection.');
         setTimeout(() => {
           btn.textContent = originalText;
           btn.disabled = false;
         }, 3000);
-      });
+      };
+
+      document.body.appendChild(script);
     });
   }
 
