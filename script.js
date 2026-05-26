@@ -141,48 +141,35 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      // Generate a unique dynamic callback name to prevent collisions
-      const callbackName = `ml_callback_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+      // Construct verified endpoint URL for subscription
+      const url = `https://assets.mailerlite.com/jsonp/${MAILERLITE_ACCOUNT_ID}/forms/${MAILERLITE_FORM_ID}/subscribe?fields[email]=${encodeURIComponent(emailInput.value)}&ml-submit=1`;
 
-      // Define the dynamic callback on the window object
-      window[callbackName] = (response) => {
-        // Clean up window object and DOM script tag
-        delete window[callbackName];
-        const scriptElement = document.getElementById(callbackName);
-        if (scriptElement) scriptElement.remove();
-
-        if (response.success) {
+      fetch(url)
+      .then(async (response) => {
+        const json = await response.json();
+        if (json.success) {
           form.style.display = 'none';
           success.classList.add('show');
         } else {
-          console.error('MailerLite Error:', response);
+          console.error('MailerLite Error:', json);
           btn.textContent = 'Error!';
-          const errorMsg = response.errors && response.errors.email ? response.errors.email[0] : 'Something went wrong. Please try again.';
+          const errorMsg = json.errors && json.errors.fields && json.errors.fields.email ? json.errors.fields.email[0] : 'Something went wrong. Please try again.';
           alert(errorMsg);
           setTimeout(() => {
             btn.textContent = originalText;
             btn.disabled = false;
           }, 3000);
         }
-      };
-
-      // Create and inject script tag to make the JSONP request
-      const script = document.createElement('script');
-      script.id = callbackName;
-      script.src = `https://assets.mailerlite.com/jsonp/${MAILERLITE_ACCOUNT_ID}/forms/${MAILERLITE_FORM_ID}/subscribe?fields[email]=${encodeURIComponent(emailInput.value)}&ml-submit=1&callback=${callbackName}`;
-      script.onerror = () => {
-        delete window[callbackName];
-        script.remove();
-        console.error('MailerLite Network Error');
+      })
+      .catch((error) => {
+        console.error('Network Error:', error);
         btn.textContent = 'Error!';
         alert('Form submission failed. Please check your internet connection.');
         setTimeout(() => {
           btn.textContent = originalText;
           btn.disabled = false;
         }, 3000);
-      };
-
-      document.body.appendChild(script);
+      });
     });
   }
 
